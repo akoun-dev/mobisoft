@@ -1,0 +1,363 @@
+# CAHIER DES CHARGES DÉTAILLÉ
+# AFRICAHUB - COMPARATEUR INTELLIGENT DE PRODUITS POUR L'AFRIQUE
+
+## 1. PRÉSENTATION DU PROJET
+
+### 1.1 Contexte
+AfricaHub est une plateforme de comparaison intelligente de produits et services, conçue spécifiquement pour le marché africain. Elle permet aux utilisateurs de comparer facilement différents produits selon des critères précis, avec une couverture de 54 pays africains et un support multilingue.
+
+### 1.2 Objectifs
+- Développer une application web et mobile responsive
+- Créer un moteur de comparaison intelligent avec IA
+- Offrir une expérience adaptée à chaque région d'Afrique
+- Intégrer les moyens de paiement locaux
+- Fournir des recommandations personnalisées
+
+### 1.3 Portée
+- Application web responsive (React + Vite + Tailwind CSS)
+- Application mobile (React Native - phase 2)
+- Backend API (Node.js/Express ou équivalent)
+- Base de données (Supabase/PostgreSQL)
+- Architecture microservices
+
+## 2. TYPES D'UTILISATEURS ET RÔLES
+
+### 2.1 Utilisateur Public (Non connecté)
+**Permissions :**
+- Consultation des produits et services
+- Utilisation du comparateur (limité à 3 produits)
+- Consultation de la carte interactive de l'Afrique
+- Demandes de devis (formulaire public)
+- Accès aux guides éducatifs
+- Navigation par secteurs
+- Recherche de produits
+- Consultation des avis (lecture seule)
+
+**Limitations :**
+- Pas de sauvegarde des comparaisons
+- Pas de recommandations personnalisées
+- Pas d'historique
+- Comparaison limitée à 3 produits
+
+### 2.2 Utilisateur Connecté (user)
+**Permissions supplémentaires :**
+- Toutes les fonctionnalités publiques
+- Comparaison illimitée de produits
+- Recommandations IA personnalisées
+- Historique des comparaisons
+- Sauvegarde des préférences
+- Notifications personnalisées
+- Gestion du profil
+- Suivi des demandes de devis
+- Rédaction d'avis et notes
+- Création de listes de favoris
+- Alertes de prix
+
+### 2.3 Modérateur (moderator)
+**Permissions supplémentaires :**
+- Toutes les fonctionnalités utilisateur
+- Modération des avis utilisateurs
+- Gestion des signalements
+- Validation/rejet des commentaires
+- Support utilisateur niveau 1
+- Accès aux outils de modération
+- Suspension temporaire d'utilisateurs
+- Édition/suppression de contenu inapproprié
+
+### 2.4 Développeur (developer)
+**Permissions supplémentaires :**
+- Toutes les fonctionnalités utilisateur
+- Accès aux APIs avec clés dédiées
+- Consultation des logs techniques
+- Monitoring des performances
+- Tests A/B
+- Accès à la documentation technique
+- Environnement de test/sandbox
+
+### 2.5 Administrateur (admin)
+**Permissions supplémentaires :**
+- Interface d'administration complète
+- Gestion des contenus (CMS)
+- Analytics et rapports détaillés
+- Gestion des utilisateurs
+- Gestion des produits et secteurs
+- Configuration des pays et régions
+- Gestion des sociétés partenaires
+- Gestion des accords commerciaux
+- Configuration des critères de comparaison
+- Gestion des promotions et publicités
+
+### 2.6 Super Administrateur (super-admin)
+**Permissions supplémentaires :**
+- Accès complet à toutes les fonctionnalités
+- Gestion des rôles et permissions
+- Configuration de la plateforme
+- Création/suppression d'administrateurs
+- Configuration des microservices
+- Gestion des intégrations externes
+- Accès aux données sensibles
+- Configuration de sécurité
+
+## 3. VUES ET INTERFACES À DÉVELOPPER
+
+### 3.1 Pages Publiques
+
+#### 3.1.1 Page d'accueil
+- Hero section avec recherche
+- Secteurs populaires (grille de 6-8 secteurs)
+- Produits en vedette
+- Comparaisons populaires
+- Statistiques de la plateforme
+- Témoignages utilisateurs
+- Section partenaires
+
+#### 3.1.2 Page de listing produits
+- Filtres avancés (prix, marque, caractéristiques)
+- Tri (prix, popularité, notes, nouveauté)
+- Vue grille/liste
+- Pagination ou scroll infini
+- Filtres par pays/région
+- Comparaison rapide (checkbox)
+
+#### 3.1.3 Page détail produit
+- Images et galerie
+- Informations détaillées
+- Caractéristiques techniques
+- Prix par pays/région
+- Disponibilité
+- Avis et notes
+- Produits similaires
+- Historique de prix
+- Bouton "Ajouter à la comparaison"
+
+#### 3.1.4 Page de comparaison
+- Tableau comparatif dynamique
+- Graphiques radar
+- Mise en évidence des différences
+- Score de recommandation IA
+- Export PDF/Excel
+- Partage sur réseaux sociaux
+- Sauvegarde de la comparaison (si connecté)
+
+#### 3.1.5 Carte interactive de l'Afrique
+- Sélection de pays
+- Informations par pays (produits disponibles, devise, langue)
+- Statistiques par région
+- Animation et transitions
+
+#### 3.1.6 Pages informatives
+- À propos
+- Comment ça marche
+- Guides par secteur
+- Blog/Actualités
+- FAQ
+- Contact
+- Conditions d'utilisation
+- Politique de confidentialité
+
+### 3.2 Pages Utilisateur Connecté
+
+#### 3.2.1 Dashboard utilisateur
+- Vue d'ensemble des activités
+- Comparaisons récentes
+- Favoris
+- Alertes actives
+- Recommandations personnalisées
+- Statistiques d'utilisation
+
+#### 3.2.2 Profil utilisateur
+- Informations personnelles
+- Préférences (langue, devise, pays)
+- Gestion des notifications
+- Historique des activités
+- Suppression de compte
+
+#### 3.2.3 Mes comparaisons
+- Liste des comparaisons sauvegardées
+- Filtres et recherche
+- Partage et export
+- Suppression en masse
+
+#### 3.2.4 Mes avis
+- Liste des avis rédigés
+- Statut (publié, en attente, rejeté)
+- Édition/suppression
+
+### 3.3 Interface de Modération
+
+#### 3.3.1 Dashboard modérateur
+- Queue de modération
+- Statistiques de modération
+- Avis signalés
+- Utilisateurs problématiques
+
+#### 3.3.2 Outils de modération
+- Interface de validation des avis
+- Gestion des signalements
+- Messages types pour les rejets
+- Historique des actions
+
+### 3.4 Interface d'Administration
+
+#### 3.4.1 Dashboard admin
+- KPIs principaux
+- Graphiques de performance
+- Alertes système
+- Activité récente
+
+#### 3.4.2 Gestion des types de produits
+- CRUD complet
+- Hiérarchie des catégories
+- Icônes et images
+- Ordre d'affichage
+- Activation/désactivation
+
+#### 3.4.3 Gestion des produits
+- Import/export en masse
+- Éditeur de fiches produits
+- Gestion des variantes
+- Association aux sociétés
+- Gestion des prix par pays
+
+#### 3.4.4 Gestion des critères de comparaison
+- Définition par type de produit
+- Types de critères (numérique, texte, booléen, liste)
+- Poids pour l'algorithme
+- Unités de mesure
+- Valeurs possibles pour les listes
+
+#### 3.4.5 Gestion des sociétés
+- Profils d'entreprises
+- Logo et informations
+- Produits associés
+- Statistiques par société
+- Contrats et commissions
+
+#### 3.4.6 Gestion des pays
+- Configuration par pays
+- Devises et taux de change
+- Langues disponibles
+- Réglementations spécifiques
+- Moyens de paiement
+
+#### 3.4.7 Analytics avancés
+- Rapports personnalisables
+- Export de données
+- Tableaux de bord temps réel
+- Analyse du comportement utilisateur
+- ROI des campagnes
+
+## 4. FONCTIONNALITÉS DÉTAILLÉES
+
+### 4.1 Moteur de Recherche
+- Recherche instantanée (autocomplete)
+- Recherche par catégorie
+- Recherche par caractéristiques
+- Recherche vocale
+- Historique de recherche
+- Suggestions intelligentes
+
+### 4.2 Système de Filtrage
+- Filtres dynamiques selon le type
+- Filtres multiples
+- Sauvegarde des filtres
+- Filtres rapides prédéfinis
+- Réinitialisation facile
+
+### 4.3 Algorithme de Comparaison IA
+- Score de pertinence
+- Apprentissage des préférences
+- Recommandations contextuelles
+- Prédiction de satisfaction
+- Analyse des tendances
+
+### 4.4 Système de Notation
+- Notes sur 5 étoiles
+- Critères de notation multiples
+- Vérification des achats
+- Calcul de la note moyenne pondérée
+- Badge "Choix de la rédaction"
+
+### 4.5 Gestion Multilingue
+- 6 langues principales (FR, EN, AR, PT, SW, AM)
+- Traduction automatique du contenu généré
+- Interface RTL pour l'arabe
+- Localisation des formats (date, nombre)
+
+### 4.6 Gestion Multi-devises
+- Conversion automatique
+- Mise à jour des taux
+- Affichage de la devise locale
+- Historique des prix
+
+### 4.7 Intégrations de Paiement
+- Orange Money
+- MTN Mobile Money
+- M-Pesa
+- Airtel Money
+- PayPal
+- Cartes bancaires
+- Virement bancaire
+
+### 4.8 API Publique
+- Documentation OpenAPI 3.0
+- Authentification OAuth 2.0
+- Rate limiting
+- Webhooks
+- SDK (JavaScript, Python, PHP)
+
+### 4.9 Notifications
+- Email
+- SMS
+- Push web
+- In-app
+- Préférences granulaires
+
+### 4.10 Système de Cache
+- Cache Redis
+- CDN pour les assets
+- Cache de requêtes
+- Invalidation intelligente
+
+## 5. SPÉCIFICATIONS TECHNIQUES
+
+### 5.1 Frontend
+- **Framework**: React 18+ avec Vite
+- **UI**: Tailwind CSS + Headless UI
+- **State Management**: Zustand + React Query
+- **Routing**: React Router v6
+- **Charts**: Recharts + D3.js
+- **Forms**: React Hook Form + Zod
+- **Animations**: Framer Motion
+- **PWA**: Service Workers
+
+### 5.2 Backend
+- **Runtime**: Node.js 18+
+- **Framework**: Express.js / Fastify
+- **ORM**: Prisma
+- **Validation**: Joi / Yup
+- **Documentation**: Swagger/OpenAPI
+- **Tests**: Jest + Supertest
+
+### 5.3 Base de Données
+- **Principal**: PostgreSQL (via Supabase)
+- **Cache**: Redis
+- **Recherche**: Elasticsearch
+- **Analytics**: ClickHouse
+- **Files**: Supabase Storage / S3
+
+### 5.4 Infrastructure
+- **Hosting**: Vercel (Frontend) + Railway/Fly.io (Backend)
+- **CDN**: Cloudflare
+- **Monitoring**: Sentry + LogRocket
+- **Analytics**: Plausible / Matomo
+- **CI/CD**: GitHub Actions
+
+### 5.5 Sécurité
+- **Auth**: Supabase Auth + JWT
+- **2FA**: TOTP
+- **Encryption**: TLS 1.3
+- **CORS**: Configuration stricte
+- **Rate Limiting**: Par IP et par user
+- **WAF**: Cloudflare
+- **Audit**: Logs détaillés
