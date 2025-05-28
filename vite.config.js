@@ -4,6 +4,14 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [react()],
+  server: {
+    fs: {
+      allow: [
+        'node_modules/leaflet',
+        process.cwd()
+      ]
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

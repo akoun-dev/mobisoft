@@ -14,6 +14,10 @@ export const useComparison = create((set) => ({
     if (state.items.some(i => i.id === item.id)) {
       return state
     }
+    // Limiter à 3 produits max pour les non connectés
+    if (state.items.length >= 3) {
+      return state
+    }
     return { items: [...state.items, item] }
   }),
 

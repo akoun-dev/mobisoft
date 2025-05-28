@@ -1,0 +1,17 @@
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.leaflet-control-container {
+  z-index: 2;
+}
+
+.leaflet-popup-content {
+  min-width: 200px;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+}
