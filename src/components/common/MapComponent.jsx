@@ -77,14 +77,24 @@ const MapComponent = ({ products, onRegionSelect, selectedRegion }) => {
                   {productsByRegion[selectedRegion]?.length || 0} produit(s) disponible(s)
                 </p>
               </div>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                onClick={() => onRegionSelect(null)}
-                className="text-blue-700 border-blue-300 hover:bg-blue-100"
-              >
-                Effacer la sélection
-              </Button>
+              <div className="flex gap-2">
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={() => onRegionSelect(null)}
+                  className="text-blue-700 border-blue-300 hover:bg-blue-100"
+                >
+                  Effacer la sélection
+                </Button>
+                <Button 
+                  variant="default" 
+                  size="sm" 
+                  onClick={() => navigate(`/region/${encodeURIComponent(selectedRegion)}`)}
+                  className="bg-green-600 hover:bg-green-700 text-white"
+                >
+                  Voir tous les produits et services
+                </Button>
+              </div>
             </div>
           </div>
         )}
@@ -121,13 +131,33 @@ const MapComponent = ({ products, onRegionSelect, selectedRegion }) => {
                         <p className="text-xs text-gray-500 mt-1">
                           📍 {product.location.city}, {product.location.country}
                         </p>
-                        <Button 
-                          size="sm" 
-                          className="mt-2 w-full" 
-                          onClick={() => navigate(`/region/${encodeURIComponent(product.location.region)}`)}
-                        >
-                          Voir tous les produits et services de {product.location.region}
-                        </Button>
+                        <div className="flex flex-col gap-2 mt-2">
+                          <Button 
+                            size="sm" 
+                            className="w-full" 
+                            onClick={() => navigate(`/produit/${product.id}`)}
+                          >
+                            Voir ce produit
+                          </Button>
+                          <Button 
+                            variant="outline"
+                            size="sm" 
+                            className="w-full" 
+                            onClick={() => navigate(`/region/${encodeURIComponent(product.location.region)}`)}
+                          >
+                            Voir tous les produits et services de {product.location.region}
+                          </Button>
+                          {product.location.region === "Cameroun" && (
+                            <Button 
+                              variant="secondary"
+                              size="sm" 
+                              className="w-full bg-green-600 hover:bg-green-700" 
+                              onClick={() => navigate('/region/Cameroun')}
+                            >
+                              🇨🇲 Explorer le Cameroun
+                            </Button>
+                          )}
+                        </div>
                       </div>
                     </Popup>
                   </Marker>
@@ -155,22 +185,33 @@ const MapComponent = ({ products, onRegionSelect, selectedRegion }) => {
                 {filteredRegions.length === 0 && (
                   <span className="text-muted-foreground text-sm px-2">Aucune région trouvée</span>
                 )}
-                {filteredRegions.map(([region, products]) => (
-                  <Button
-                    key={region}
-                    variant={selectedRegion === region ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => onRegionSelect(region)}
-                    className="justify-between truncate w-full px-2 min-h-[2.25rem]"
-                    style={{ maxWidth: '100%' }}
-                    title={region}
-                  >
-                    <span className="truncate text-left w-full">{region}</span>
-                    <Badge variant="secondary" className="ml-2 shrink-0">
-                      {products.length}
-                    </Badge>
-                  </Button>
-                ))}
+                {filteredRegions.map(([region, products]) => {
+                  const isCameroon = region === "Cameroun"
+                  return (
+                    <Button
+                      key={region}
+                      variant={selectedRegion === region ? (isCameroon ? "default" : "default") : "outline"}
+                      size="sm"
+                      onClick={() => onRegionSelect(region)}
+                      className={`justify-between truncate w-full px-2 min-h-[2.25rem] ${
+                        isCameroon ? "bg-green-100 hover:bg-green-200 border-green-300" : ""
+                      }`}
+                      style={{ maxWidth: '100%' }}
+                      title={region}
+                    >
+                      <span className="truncate text-left w-full flex items-center gap-2">
+                        {isCameroon && <span>🇨🇲</span>}
+                        {region}
+                      </span>
+                      <Badge 
+                        variant={isCameroon ? "default" : "secondary"} 
+                        className={`ml-2 shrink-0 ${isCameroon ? "bg-green-600" : ""}`}
+                      >
+                        {products.length}
+                      </Badge>
+                    </Button>
+                  )
+                })}
               </div>
             </ScrollArea>
           </CardContent>

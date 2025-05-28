@@ -8,6 +8,7 @@ import AboutPage from './pages/public/AboutPage'
 import ContactPage from './pages/public/ContactPage'
 import FaqPage from './pages/public/FaqPage'
 import RegionProductsPage from './pages/public/RegionProductsPage'
+import ProductDetailPage from './pages/public/ProductDetailPage'
 import './App.css'
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/comparaison" element={<ComparisonPage />} />
           <Route path="/produits" element={<ProductsPage />} />
           <Route path="/region/:region" element={<RegionProductsPage />} />
+          <Route path="/produit/:id" element={<ProductDetailPage />} />
           <Route path="/a-propos" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/faq" element={<FaqPage />} />

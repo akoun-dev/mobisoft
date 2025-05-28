@@ -1,6 +1,7 @@
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '../ui/card'
 import { Badge } from '../ui/badge'
 import { Button } from '../ui/button'
+import { useNavigate } from 'react-router-dom'
 import { Progress } from '../ui/progress'
 import { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider } from '../ui/tooltip'
 import { Heart, Share2, Star, ShoppingCart, Eye } from 'lucide-react'
@@ -8,6 +9,11 @@ import { useComparison } from '../../stores/useComparison'
 
 const GenericCard = ({ item }) => {
   const { addItem } = useComparison()
+  const navigate = useNavigate()
+
+  const handleDetailsClick = () => {
+    navigate(`/produit/${item.id}`)
+  }
 
   // Formatage du prix avec séparateurs de milliers
   const formatPrice = (price) => {
@@ -216,6 +222,7 @@ const GenericCard = ({ item }) => {
                 <Button 
                   variant="outline" 
                   className="h-10 w-10 p-0 flex-shrink-0 border-primary text-primary hover:bg-accent"
+                  onClick={handleDetailsClick}
                 >
                   <Eye className="h-4 w-4" />
                 </Button>
