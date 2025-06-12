@@ -79,6 +79,7 @@ const HomePage: React.FC = () => {
         <>
             {/* Navigation flottante pour une meilleure UX */}
             {/* <FloatingNavigation sections={navigationSections} /> */}
+            {/* <FloatingNavigation sections={navigationSections} /> */}
 
             {/* Layout optimisé avec transitions fluides */}
             <HomePageLayout>
